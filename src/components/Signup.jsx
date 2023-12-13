@@ -22,7 +22,7 @@ function Signup() {
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="shadow-lg rounded-3xl py-8 px-6 bg-mainAccent text-center">
         <img
-          src="public/assets/rocket.png"
+          src="/assets/rocket.png"
           alt="/"
           className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6 h-auto mx-auto mb-10"
         />

@@ -7,16 +7,20 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-import {useGetUserInfo} from "./useGetUserInfo"
+import { userID } from "./useGetUserInfo"
 import { db } from "../config/firebase-config";
 
-export const useGetTransactions = () => {
-  const [transactions, setTransactions] = useState([]);
-  const {userID} = useGetUserInfo();
+  export const useGetTransactions = () => {
+    const [transactions, setTransactions] = useState([]);
+    const [transactionTotals, setTransactionTotals] = useState({
+      income: 0.0,
+      expenses: 0.0,
+    });
 
   const transactionCollectionRef = collection(db, "transactions");
 
   const getTransactions = async () => {
+    let unsubscribe;
     try {
 
       const queryTransactions = query(
@@ -24,6 +28,17 @@ export const useGetTransactions = () => {
         where("userID", "==", userID),
         orderBy("createdAt")
       );
+
+      onSnapshot(queryTransactions, (snapshot) => {
+        let docs = [];
+
+        unsubscribe = snapshot.forEach((doc) => {
+          const data = doc.data();
+          const id = doc.id;
+
+          docs.push({ ...data, id})
+        })
+      })
 
       
     } catch (err) {
@@ -37,5 +52,5 @@ export const useGetTransactions = () => {
     getTransactions();
   }, []);
 
-  return { transactions };
+  return { transactions, transactionTotals };
 };

@@ -1,4 +1,7 @@
 import React from "react";
+
+import {auth} from "../config/firebase-config"
+import { signOut } from "firebase/auth"; 
 import { MdLogout } from "react-icons/md";
 
 const Navbar = () => {
@@ -16,7 +19,7 @@ const Navbar = () => {
   return (
     <nav className="bg-mainAccent p-4 flex justify-between items-center">
       <div className="text-white mr-3 flex items-center">
-        <img src="public\assets\money_bag.png" alt="/" className="w-4 mr-2" />
+        <img src="/assets/money_bag.png" alt="/" className="w-4 mr-2" />
         <span className="text-lg font-bold font-pixel">Financial</span>
       </div>
 

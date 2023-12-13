@@ -2,14 +2,13 @@ import { useState, React } from "react";
 import { BsCurrencyRupee } from "react-icons/bs";
 
 import { useAddTransaction } from "../hooks/useAddTransaction";
-//import { useGetTransactions } from "../hooks/useGetTransactions";
+import { useGetTransactions } from "../hooks/useGetTransactions";
 
 import Navbar from "./Navbar";
-//import {authInfo} from "./Signup";
 
 function Dashboard() {
   const { addTransaction } = useAddTransaction();
-  //const {transactions} = useGetTransactions();
+  const {transactions} = useGetTransactions();
 
   const [description, setDescription] = useState("");
   const [transactionAmount, setTransactionAmount] = useState(0);
@@ -135,6 +134,22 @@ function Dashboard() {
           <h3 className="text-white text-2xl font-pixel font-bold ml-6">
             Transactions
           </h3>
+        </div>
+        <div>
+        <ul>
+          {transactions.map((transaction) => {
+            const { description, transactionAmount } =
+              transaction;
+            return (
+              <li>
+                <h4> {description} </h4>
+                <p>
+                  ${transactionAmount}
+                </p>
+              </li>
+            );
+          })}
+        </ul>
         </div>
       </div>
     </>
