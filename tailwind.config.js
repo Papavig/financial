@@ -12,8 +12,6 @@ export default {
         mainText: "#b39c4d",
         btn1: "#768948",
         hbtn1: "#5c6d34",
-        btn2: "#34623f",
-        hbtn2: "#295333",
       }
     },
   },

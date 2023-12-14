@@ -10,38 +10,38 @@ import {
 import { db } from "../config/firebase-config";
 import { useGetUserInfo } from "./useGetUserInfo";
 
-// Custom hook for retrieving income records
-export const useGetIncome = () => {
-  // State to store the list of incomes
-  const [Incomes, setIncomes] = useState([]);
+// Custom hook for retrieving expense records
+export const useGetExpanse = () => {
+  // State to store the list of expenses
+  const [Expenses, setExpenses] = useState([]);
 
-  // State to store the total income
-  const [incomeTotals, setIncomeTotals] = useState({
-    income: 0.0,
+  // State to store the total expenses
+  const [expenseTotals, setExpenseTotals] = useState({
+    expenses: 0.0,
   });
 
-  // Reference to the "Income" collection in Firestore
-  const incomeCollectionRef = collection(db, "Income");
+  // Reference to the "Expanse" collection in Firestore
+  const ExpenseCollectionRef = collection(db, "Expanse");
 
   // Get user information using another custom hook
   const { userID } = useGetUserInfo();
 
-  // Function to retrieve income records and calculate total income
-  const getIncome = async () => {
+  // Function to retrieve expense records and calculate total expenses
+  const getExpense = async () => {
     let unsubscribe;
 
     try {
-      // Define a query to filter incomes based on user ID and order them by createdAt
-      const queryIncome = query(
-        incomeCollectionRef,
+      // Define a query to filter expenses based on user ID and order them by createdAt
+      const queryExpense = query(
+        ExpenseCollectionRef,
         where("userID", "==", userID),
         orderBy("createdAt")
       );
 
       // Set up a snapshot listener to get real-time updates
-      unsubscribe = onSnapshot(queryIncome, (snapshot) => {
+      unsubscribe = onSnapshot(queryExpense, (snapshot) => {
         let docs = [];
-        let totalIncome = 0;
+        let totalExpenses = 0;
 
         // Process each document in the snapshot
         snapshot.forEach((doc) => {
@@ -51,15 +51,15 @@ export const useGetIncome = () => {
           // Add document data to the array
           docs.push({ ...data, id });
 
-          // Update total income
-          totalIncome += Number(data.incomeAmount);
+          // Update total expenses
+          totalExpenses += Number(data.expenseAmount);
         });
 
-        // Update state with the list of incomes and total income
-        setIncomes(docs);
+        // Update state with the list of expenses and total expenses
+        setExpenses(docs);
 
-        setIncomeTotals({
-          income: totalIncome,
+        setExpenseTotals({
+          expenses: totalExpenses,
         });
       });
     } catch (err) {
@@ -72,8 +72,8 @@ export const useGetIncome = () => {
 
   // Use the useEffect hook to initiate the data retrieval
   useEffect(() => {
-    getIncome();
+    getExpense();
   }, []);
 
-  return { Incomes, incomeTotals };
+  return { Expenses, expenseTotals };
 };

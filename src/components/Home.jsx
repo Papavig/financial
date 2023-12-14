@@ -1,3 +1,4 @@
+// Import necessary modules and components
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { TiTick } from "react-icons/ti";
@@ -6,16 +7,20 @@ import { BsCurrencyRupee } from "react-icons/bs";
 function Home() {
   const navigate = useNavigate();
 
+  // Navigate to the Sign up Page
   const signup = () => {
     navigate("/signup");
   };
 
+  // Navigate to the 404 Error page
   const error = () => {
     navigate("/404");
   };
 
   return (
     <>
+
+    {/* Hero Section */}
       <div className="flex flex-col items-center justify-center h-screen">
         <div className="mb-4">
           <img
@@ -37,6 +42,7 @@ function Home() {
         </div>
       </div>
 
+      {/* Middle part with image and text */}
       <div className="container my-12 mx-6 p-12 rounded-lg shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8 h-auto md:h-screen sm:container sm:mx-auto">
         <div className="md:order-2 text">
           <img
@@ -86,11 +92,14 @@ function Home() {
         </div>
       </div>
 
+      {/* Cards Section */}
       <div className="container px-4 md:px-8 lg:px-16 xl:px-32 pb-8 pt-12 md:pt-16 lg:pt-20 sm:container sm:mx-auto">
         <h3 className="text-white text-5xl font-bold font-pixel my-12 opacity-80">
           Plans
         </h3>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+          {/* Basic Card */}
           <div className="shadow-lg rounded-3xl py-8 px-6 bg-mainAccent">
             <span className="mb-3 inline-block text-lg font-semibold text-white">
               Basic
@@ -124,6 +133,7 @@ function Home() {
             </button>
           </div>
 
+          {/* Premium Card */}
           <div className="shadow-lg rounded-3xl py-8 px-6 bg-mainAccent">
             <span className="mb-3 inline-block text-lg font-semibold text-white">
               Premium
@@ -157,6 +167,7 @@ function Home() {
             </button>
           </div>
 
+          {/* Ultimate Card */}
           <div className="shadow-lg rounded-3xl py-8 px-6 bg-mainAccent">
             <span className="mb-3 inline-block text-lg font-semibold text-white">
               Ultimate
@@ -208,6 +219,7 @@ function Home() {
           </button>
         </div>
 
+        {/* Footer section */}
         <footer className="text-white my-8 text-center">
           <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
         </footer>
