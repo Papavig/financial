@@ -25,7 +25,7 @@ function Home() {
           />
         </div>
         <div className="container mx-auto px-4 sm:px-8 md:px-16 lg:px-32 font-pixel text-4xl sm:text-6xl lg:text-8xl tracking-widest text-mainText uppercase text-center">
-          <h1>Master your financial universe</h1>
+          <h1>Master your financial <span>universe </span></h1>
         </div>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mt-8 mb-20">
           <button
